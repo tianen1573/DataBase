@@ -352,10 +352,10 @@ decimal
 >
 >     ~~~mysql
 >     mysql> create table tt8 ( id int, salary float(10,8), salary2 decimal(10,8));
->                             
+>                                 
 >     mysql> insert into tt8 values(100,23.12345612, 23.12345612);
 >     Query OK, 1 row affected (0.00 sec)
->                             
+>                                 
 >     mysql> select * from tt8;
 >     +------+-------------+-------------+
 >     | id | salary | salary2 |
@@ -451,7 +451,7 @@ varchar
 >     ~~~mysql
 >     mysql> create table tt11(name varchar(21845))charset=utf8; -- 验证了utf8确实是不能超过21844
 >     ERROR 1118 (42000): Row size too large. The maximum row size for the used table type,not counting BLOBs, is 65535. You have to change some columns to TEXT or BLOBs
->                             
+>                                 
 >     mysql> create table tt11(name varchar(21844)) charset=utf8;
 >     Query OK, 0 rows affected (0.01 sec)
 >     ~~~
@@ -645,7 +645,7 @@ enum和set
 >     | NULL |
 >     +------+
 >     1 row in set (0.00 sec)
->         
+>             
 >     mysql> select 1+null;
 >     +--------+
 >     | 1+null |
@@ -653,7 +653,7 @@ enum和set
 >     | NULL |
 >     +--------+
 >     1 row in set (0.00 sec)
->         
+>             
 >     ~~~
 >
 > 案例： 创建一个班级表，包含班级名和班级所在的教室。 
@@ -902,7 +902,7 @@ zerofill
 >         primary key(id, course) -- id和course为复合主键
 >     	);
 >     Query OK, 0 rows affected (0.01 sec)
->         
+>             
 >     mysql> desc tt14;
 >     +--------+---------------------+------+-----+---------+-------+
 >     | Field | Type | Null | Key | Default | Extra |
@@ -911,10 +911,10 @@ zerofill
 >     | course | char(10) | NO | PRI | | |
 >     | score | tinyint(3) unsigned | YES | | 60 | |
 >     +--------+---------------------+------+-----+---------+-------+
->         
+>             
 >     mysql> insert into tt14 (id,course)values(1, '123');
 >     Query OK, 1 row affected (0.02 sec)
->         
+>             
 >     mysql> insert into tt14 (id,course)values(1, '123');
 >     ERROR 1062 (23000): Duplicate entry '1-123' for key 'PRIMARY' -- 主键冲突
 >     ~~~
@@ -3928,12 +3928,12 @@ mysql> show variables like 'autocommit';
 >     Proto Recv-Q Send-Q Local Address Foreign Address State
 >     PID/Program name
 >     tcp6 0 0 :::3306 :::* LISTEN 30415/mysqld
->                                         
+>                                             
 >     ## 使用win cmd远程访问Centos 7云服务器，mysqld服务(需要win上也安装了MySQL，这里看到结果即可)
 >     ## 注意，使用本地mysql客户端，可能看不到链接效果，本地可能使用域间套接字，查不到链接
 >     C:\Users\whb>mysql -uroot -p -h42.192.83.143
 >     Enter password: ***********
->                                         
+>                                             
 >     Welcome to the MySQL monitor. Commands end with ; or \g.
 >     Your MySQL connection id is 3484
 >     Server version: 5.7.33 MySQL Community Server (GPL)
@@ -3949,13 +3949,13 @@ mysql> show variables like 'autocommit';
 >     Active Internet connections (w/o servers)
 >     Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
 >     tcp6 0 0 172.17.0.3:3306 113.132.141.236:19354 ESTABLISHED  30415/mysqld
->                                         
+>                                             
 >     -- 必须设置，否则后续实验无法进行
 >     ## 为了便于演示，我们将mysql的默认隔离级别设置成读未提交。
 >     ## 具体操作我们后面专门会讲，现在已使用为主。
 >     mysql> set global transaction isolation level READ UNCOMMITTED;
 >     Query OK, 0 rows affected (0.00 sec)
->                                         
+>                                             
 >     mysql> quit
 >     Bye
 >     ##需要重启终端，进行查看
@@ -4018,7 +4018,7 @@ mysql> show variables like 'autocommit';
 >     Query OK, 0 rows affected (0.00 sec)
 >     mysql> select * from account; -- 所有刚刚的记录没有了
 >     Empty set (0.00 sec)
->                                         
+>                                             
 >     ~~~
 >
 > - 非正常演示1 - 证明未commit，客户端崩溃，MySQL自动会回滚（隔离级别设置为读未提交）
@@ -4084,7 +4084,7 @@ mysql> show variables like 'autocommit';
 >     | 1 | 张三 | 100.00 |
 >     +----+--------+--------+
 >     1 row in set (0.00 sec)
->                                         
+>                                             
 >     ~~~
 >
 > - 非正常演示3 - 对比试验。证明begin操作会自动更改提交方式，不会受MySQL是否自动提交影响
@@ -4955,7 +4955,7 @@ creator_trx_id //创建该ReadView的事务ID
 >     //结论
 >     故，事务4的更改，应该看到。
 >     所以事务2能读到的最新数据记录是事务4所提交的版本，而事务4提交的版本也是全局角度上最新的版本
->                                                 
+>                                                     
 >     ~~~
 >
 >     
